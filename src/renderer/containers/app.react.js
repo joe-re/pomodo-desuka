@@ -9,7 +9,7 @@ class App extends Component {
     const { count, actions } = this.props;
     return (
       <div>
-        <Counter count={count} countUp={actions.countUp} />
+        <Counter count={count} buttonClick={actions.buttonClick} />
       </div>
     );
   }

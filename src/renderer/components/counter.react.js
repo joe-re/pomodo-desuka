@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 class Counter extends Component {
   handleCountUp() {
-    this.props.countUp();
+    this.props.buttonClick();
   }
 
   render() {
