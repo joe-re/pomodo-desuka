@@ -7,9 +7,13 @@ import Counter from '../components/counter';
 class App extends Component {
   render() {
     const { count, actions } = this.props;
+    console.log(actions);
     return (
       <div>
-        <Counter count={count} buttonClick={actions.buttonClick} />
+        <Counter count={count}
+          onSetTimer={actions.setTimer}
+          onStartTimer={actions.startTimer}
+          onStopTimer={actions.stopTimer} />
       </div>
     );
   }

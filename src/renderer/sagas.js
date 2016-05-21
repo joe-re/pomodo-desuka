@@ -1,36 +1,55 @@
-import { fork, take, put, call } from 'redux-saga/effects';
-import { countUp } from './actions';
+import { fork, take, put, call, select } from 'redux-saga/effects';
+import { countDown } from './actions';
+import { getCount } from './selectors';
 
-let timer = null;
+let isCounting = false;
 
 function wait() {
   return new Promise(resolve => {
-    timer = setTimeout(() => resolve(), 1000);
+    setTimeout(() => resolve(), 1000);
   });
 }
 
 function* start() {
   while (true) {
     yield call(wait);
-    yield put(countUp());
-    if (timer === null) {
+    yield put(countDown());
+    const count = yield select(getCount);
+    if (count <= 0) {
+      isCounting = false;
+    }
+    if (!isCounting) {
       break;
     }
   }
 }
 
-function* incrementalCount() {
+function* setTimer() {
   while (true) {
-    yield take('BUTTON_CLICK');
-    if (timer === null) {
+    const action = yield take('SET_TIMER');
+    yield put(action);
+  }
+}
+
+function* startTimer() {
+  while (true) {
+    yield take('START_TIMER');
+    if (!isCounting) {
+      isCounting = true;
       yield fork(start);
-    } else {
-      clearInterval(timer);
-      timer = null;
     }
   }
 }
 
+function* stopTimer() {
+  while (true) {
+    yield take('STOP_TIMER');
+    isCounting = false;
+  }
+}
+
 export default function* rootSaga() {
-  yield fork(incrementalCount);
+  yield fork(setTimer);
+  yield fork(startTimer);
+  yield fork(stopTimer);
 }

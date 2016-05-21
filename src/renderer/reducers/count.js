@@ -1,10 +1,13 @@
-const todos = (state = 0, action) => {
+const count = (state = 5, action) => {
   switch (action.type) {
-  case 'COUNT_UP':
-    return state + 1;
+  case 'SET_TIMER':
+    return action.seconds;
+  case 'COUNT_DOWN':
+    const newState = state - 1;
+    return newState < 0 ? 0 : newState;
   default:
     return state;
   }
 };
 
-export default todos;
+export default count;
