@@ -13,3 +13,7 @@ export const startTimer = () => {
 export const stopTimer = () => {
   return { type: 'STOP_TIMER' };
 };
+
+export const changeTerm = (term) => {
+  return { type: 'CHANGE_TERM', term };
+};

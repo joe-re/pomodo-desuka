@@ -31,6 +31,13 @@ function* setTimer() {
   }
 }
 
+function* changeTerm() {
+  while (true) {
+    const action = yield take('CHANGE_TERM');
+    yield put(action);
+  }
+}
+
 function* startTimer() {
   while (true) {
     yield take('START_TIMER');
@@ -52,4 +59,5 @@ export default function* rootSaga() {
   yield fork(setTimer);
   yield fork(startTimer);
   yield fork(stopTimer);
+  yield fork(changeTerm);
 }

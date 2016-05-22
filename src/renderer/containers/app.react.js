@@ -3,15 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CountActions from '../actions';
 import Counter from '../components/counter';
+import TimerHeader from '../components/timer_header';
 
 class App extends Component {
   render() {
-    const { count, actions } = this.props;
-    console.log(actions);
+    const { actions, counter } = this.props;
     return (
       <div>
-        <Counter count={count}
-          onSetTimer={actions.setTimer}
+        <TimerHeader onChangeTerm={actions.changeTerm} />
+        <Counter
+          {...counter}
           onStartTimer={actions.startTimer}
           onStopTimer={actions.stopTimer} />
       </div>
@@ -20,8 +21,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    count: state.count
+    counter: state.counter
   };
 }
 

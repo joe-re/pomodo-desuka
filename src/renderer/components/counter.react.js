@@ -28,7 +28,6 @@ class Counter extends Component {
       <div className="counter">
         <h1>Counter</h1>
         {count}
-        <button onClick={this.props.onSetTimer.bind(this, 5)}>SET</button>
         { this.state.isStart ?
           <button onClick={this.handleTimerStop.bind(this)}>Stop</button> :
           <button onClick={this.handleTimerStart.bind(this)}>Start</button>
