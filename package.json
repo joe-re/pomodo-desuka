@@ -33,7 +33,10 @@
     "babel-preset-react": "^6.5.0",
     "coffee-script": "^1.10.0",
     "concurrently": "^2.1.0",
+    "css-loader": "^0.23.1",
     "node-sass": "^3.7.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.0"
   }
 }

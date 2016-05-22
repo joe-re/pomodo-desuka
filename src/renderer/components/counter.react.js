@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import Timer from './timer';
 
-class Counter extends Component {
+export default class Counter extends Component {
   constructor(_props) {
     super();
     this.state = { isStart: false };
@@ -27,7 +28,7 @@ class Counter extends Component {
     return (
       <div className="counter">
         <h1>Counter</h1>
-        {count}
+        <Timer seconds={count} />
         { this.state.isStart ?
           <button onClick={this.handleTimerStop.bind(this)}>Stop</button> :
           <button onClick={this.handleTimerStart.bind(this)}>Start</button>
@@ -36,5 +37,3 @@ class Counter extends Component {
     );
   }
 }
-
-export default Counter;

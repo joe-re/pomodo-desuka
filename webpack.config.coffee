@@ -24,6 +24,10 @@ module.exports =
           presets: ['es2015', 'react']
         }
       }
+      {
+        test: /\.scss$/
+        loaders: ['style', 'css', 'sass']
+      }
     ]
   resolve:
     extensions: ['', '.js', '.react.js']

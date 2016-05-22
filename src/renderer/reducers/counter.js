@@ -5,7 +5,6 @@ const counter = (state = { term: 'pomodoro', count: 60 * 25 }, action) => {
     case 'pomodoro':
       return { term: 'pomodoro', count: 60 * 25 };
     case 'short_break':
-      console.log(action);
       return { term: 'short_break', count: 60 * 5 };
     case 'long_break':
       return { term: 'long_break', count: 60 * 15 };
