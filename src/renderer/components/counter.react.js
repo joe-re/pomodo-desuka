@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import Timer from './timer';
+import TimerText from './timer_text';
+const style = require('!style!css!sass!./counter.scss').counter;
 
 export default class Counter extends Component {
   constructor(_props) {
@@ -24,14 +25,17 @@ export default class Counter extends Component {
   }
 
   render() {
-    const { count } = this.props;
+    const { count, term } = this.props;
     return (
-      <div className="counter">
-        <h1>Counter</h1>
-        <Timer seconds={count} />
+      <div className={`counter ${style}`}>
+        <TimerText seconds={count} term={term} />
         { this.state.isStart ?
-          <button onClick={this.handleTimerStop.bind(this)}>Stop</button> :
-          <button onClick={this.handleTimerStart.bind(this)}>Start</button>
+          <a className="start-link" onClick={this.handleTimerStop.bind(this)} >
+            <span className="glyphicon glyphicon-pause"></span>
+          </a> :
+          <a className="stop-link" onClick={this.handleTimerStart.bind(this)}>
+            <span className="glyphicon glyphicon-play"></span>
+          </a>
         }
       </div>
     );

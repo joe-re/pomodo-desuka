@@ -1,0 +1,10 @@
+:local(.counter) {
+  display: flex;
+  flex-direction: column;
+
+  .start-link,
+  .stop-link {
+    font-size: 50px;
+    text-align: center;
+  }
+}

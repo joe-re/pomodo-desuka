@@ -4,13 +4,14 @@
   "description": "",
   "main": "dist/main/index.js",
   "scripts": {
-    "build": "npm run prepare && webpack && npm run build:scss",
+    "build": "npm run prepare && webpack && npm run build:scss && build:font",
     "build:scss": "node-sass src/renderer/index.scss -o dist/renderer/  --include-path node_modules",
+    "build:font": "mkdir -p ./dist/fonts && cp ./node_modules/bootstrap/fonts/* ./dist/fonts",
     "watch": "npm run prepare && concurrently --kill-others \"webpack -w\" \"npm run watch:scss\"",
     "watch:scss": "node-sass src/renderer/index.scss -o dist/renderer/  --include-path node_module -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "prepare": "mkdir -p dist/renderer && cp src/renderer/index.html dist/renderer/"
+    "prepare": "mkdir -p dist/renderer/ && cp src/renderer/index.html dist/renderer/ && npm run build:font"
   },
   "keywords": [],
   "author": "",
