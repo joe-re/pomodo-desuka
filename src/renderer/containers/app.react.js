@@ -1,17 +1,32 @@
-import { Component } from 'react';
+// @flow
+declare module 'redux' {};
+
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CountActions from '../actions';
-import Counter from '../components/counter';
+import CounterComponent from '../components/counter';
 import TimerHeader from '../components/timer_header';
+import type { Counter } from '../reducers/counter';
+
+type State = {
+ counter: Counter
+};
+
+type Props = {
+  actions: any,
+  counter: Counter
+}
 
 class App extends Component {
-  render() {
+  props: Props;
+
+  render(): React.Element {
     const { actions, counter } = this.props;
     return (
       <div>
         <TimerHeader onChangeTerm={actions.changeTerm} />
-        <Counter
+        <CounterComponent
           {...counter}
           onStartTimer={actions.startTimer}
           onStopTimer={actions.stopTimer} />
@@ -20,7 +35,12 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+  counter: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state: State) {
   return {
     counter: state.counter
   };

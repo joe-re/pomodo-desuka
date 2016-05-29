@@ -1,4 +1,10 @@
-const counter = (state = { term: 'pomodoro', count: 60 * 25 }, action) => {
+// @flow
+export type Counter = {
+  term: string,
+  count: number
+}
+
+const counter = (state: Counter = { term: 'pomodoro', count: 60 * 25 }, action: any) => {
   switch (action.type) {
   case 'CHANGE_TERM':
     switch (action.term) {

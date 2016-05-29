@@ -1,14 +1,27 @@
-import { Component } from 'react';
+// @flow
+import React, { Component, PropTypes } from 'react';
 import TimerText from './timer_text';
-const style = require('!style!css!sass!./counter.scss').counter;
+import style from '!style!css!sass!./counter.scss';
 
+type Props = {
+  count: number,
+  term: string,
+  onStartTimer: Function,
+  onStopTimer: Function
+};
+type State = {
+  isStart: boolean
+};
 export default class Counter extends Component {
-  constructor(_props) {
+  props: Props;
+  state: State;
+
+  constructor(_props: Props) {
     super();
     this.state = { isStart: false };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.count === 0) {
       this.setState({ isStart: false });
     }
@@ -24,10 +37,10 @@ export default class Counter extends Component {
     this.setState({ isStart: false });
   }
 
-  render() {
+  render(): React.Element {
     const { count, term } = this.props;
     return (
-      <div className={`counter ${style}`}>
+      <div className={`counter ${style.counter}`}>
         <TimerText seconds={count} term={term} />
         { this.state.isStart ?
           <a className="start-link" onClick={this.handleTimerStop.bind(this)} >
@@ -41,3 +54,8 @@ export default class Counter extends Component {
     );
   }
 }
+
+Counter.propTypes = {
+  count: PropTypes.number.isRequired,
+  term: PropTypes.string.isRequired
+};

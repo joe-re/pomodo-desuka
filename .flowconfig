@@ -1,0 +1,18 @@
+[ignore]
+.*/node_modules/flow-typed/src/*
+.*/node_modules/npm/*
+.*/node_modules/fbjs/lib/*
+
+[include]
+
+[libs]
+flow-typed/npm/redux_v3.x.x.js
+interface/.*
+
+[options]
+module.file_ext=.react.js
+module.file_ext=.js
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/interface/CSSModules.js'
+
+[version]
+0.26.0
