@@ -6,7 +6,7 @@
 [include]
 
 [libs]
-flow-typed/npm/redux_v3.x.x.js
+flow-typed/.*
 interface/.*
 
 [options]

@@ -1,1 +1,2 @@
-export const getCount = state => state.counter.count;
+// @flow
+export const getCount = (state: any): number => state.counter.count;

@@ -1,20 +1,33 @@
 // @flow
-export const countDown = () => {
-  return { type: 'COUNT_DOWN' };
-};
+export type CounterType =
+  | 'COUNT_DOWN'
+  | 'START_TIMER'
+  | 'STOP_TIMER'
+  | 'CHANGE_TERM';
 
-export const setTimer = (seconds: number) => {
-  return { type: 'SET_TIMER', seconds };
-};
 
-export const startTimer = () => {
+const startTimer = (): { type: CounterType } => {
   return { type: 'START_TIMER' };
 };
 
-export const stopTimer = () => {
+const stopTimer = (): { type: CounterType } => {
   return { type: 'STOP_TIMER' };
 };
 
-export const changeTerm = (term: string) => {
+const changeTerm = (term: string): { type: CounterType } => {
   return { type: 'CHANGE_TERM', term };
+};
+
+export const CounterActions = {
+  startTimer,
+  stopTimer,
+  changeTerm
+};
+
+const countDown = (): { type: CounterType } => {
+  return { type: 'COUNT_DOWN' };
+};
+
+export const CounterActionsForSaga = {
+  countDown
 };

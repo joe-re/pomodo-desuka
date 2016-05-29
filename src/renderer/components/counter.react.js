@@ -2,13 +2,15 @@
 import React, { Component, PropTypes } from 'react';
 import TimerText from './timer_text';
 import style from '!style!css!sass!./counter.scss';
+import { CounterActions } from './../actions/';
 
 type Props = {
   count: number,
   term: string,
-  onStartTimer: Function,
-  onStopTimer: Function
+  onStartTimer: typeof CounterActions.startTimer,
+  onStopTimer: typeof CounterActions.stopTimer
 };
+
 type State = {
   isStart: boolean
 };
@@ -28,7 +30,7 @@ export default class Counter extends Component {
   }
 
   handleTimerStart() {
-    this.props.onStartTimer({ seconds: 5 });
+    this.props.onStartTimer();
     this.setState({ isStart: true });
   }
 

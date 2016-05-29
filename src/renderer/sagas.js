@@ -1,5 +1,7 @@
+// @flow
 import { fork, take, put, call, select } from 'redux-saga/effects';
-import { countDown } from './actions';
+import { CounterActionsForSaga } from './actions';
+import type { CounterType } from './actions';
 import { getCount } from './selectors';
 
 let isCounting = false;
@@ -10,11 +12,15 @@ function wait() {
   });
 }
 
+function takeCountAction(counterType: CounterType) {
+  return take(counterType);
+}
+
 function* start() {
   while (true) {
     yield call(wait);
-    yield put(countDown());
-    const count = yield select(getCount);
+    yield put(CounterActionsForSaga.countDown());
+    const count: any = yield select(getCount);
     if (count <= 0) {
       isCounting = false;
     }
@@ -24,23 +30,16 @@ function* start() {
   }
 }
 
-function* setTimer() {
-  while (true) {
-    const action = yield take('SET_TIMER');
-    yield put(action);
-  }
-}
-
 function* changeTerm() {
   while (true) {
-    const action = yield take('CHANGE_TERM');
+    const action = yield takeCountAction('CHANGE_TERM');
     yield put(action);
   }
 }
 
 function* startTimer() {
   while (true) {
-    yield take('START_TIMER');
+    yield takeCountAction('START_TIMER');
     if (!isCounting) {
       isCounting = true;
       yield fork(start);
@@ -50,13 +49,12 @@ function* startTimer() {
 
 function* stopTimer() {
   while (true) {
-    yield take('STOP_TIMER');
+    yield takeCountAction('STOP_TIMER');
     isCounting = false;
   }
 }
 
-export default function* rootSaga() {
-  yield fork(setTimer);
+export default function* rootSaga(): Generator {
   yield fork(startTimer);
   yield fork(stopTimer);
   yield fork(changeTerm);

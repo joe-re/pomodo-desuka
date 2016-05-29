@@ -4,7 +4,7 @@ declare module 'redux' {};
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CountActions from '../actions';
+import { CounterActions } from '../actions';
 import CounterComponent from '../components/counter';
 import TimerHeader from '../components/timer_header';
 import type { Counter } from '../reducers/counter';
@@ -14,7 +14,7 @@ type State = {
 };
 
 type Props = {
-  actions: any,
+  actions: typeof CounterActions,
   counter: Counter
 }
 
@@ -48,7 +48,7 @@ function mapStateToProps(state: State) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(CountActions, dispatch)
+    actions: bindActionCreators(CounterActions, dispatch)
   };
 }
 
