@@ -1,5 +1,5 @@
 // @flow
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import TimerText from './timer_text';
 import style from '!style!css!sass!./counter.scss';
 import { CounterActions } from './../actions/';
@@ -56,8 +56,3 @@ export default class Counter extends Component {
     );
   }
 }
-
-Counter.propTypes = {
-  count: PropTypes.number.isRequired,
-  term: PropTypes.string.isRequired
-};
