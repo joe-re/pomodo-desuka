@@ -1,6 +1,12 @@
+//@flow
 import { Component } from 'react';
+import { CounterActions } from './../actions/';
 
 export default class TimerHeader extends Component {
+  props: {
+    onChangeTerm: typeof CounterActions.changeTerm
+  };
+
   render() {
     return(
       <div className="btn-group btn-group-justified" role="group">
