@@ -4,7 +4,9 @@ export type Counter = {
   count: number
 }
 
-const counter = (state: Counter = { term: 'pomodoro', count: 60 * 25 }, action: any) => {
+import type { CounterActionType } from './../actions';
+
+const counter = (state: Counter = { term: 'pomodoro', count: 60 * 25 }, action: CounterActionType) => {
   switch (action.type) {
   case 'CHANGE_TERM':
     switch (action.term) {

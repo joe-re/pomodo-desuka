@@ -8,17 +8,23 @@ export type CounterType =
 export type TermType =
   | 'pomodoro'
   | 'short_break'
-  | 'long_break'
+  | 'long_break';
 
-const startTimer = (): { type: CounterType } => {
+export type CounterActionType =
+  | { type: 'COUNT_DOWN' }
+  | { type: 'START_TIMER' }
+  | { type: 'STOP_TIMER' }
+  | { type: 'CHANGE_TERM', term: TermType };
+
+const startTimer = (): CounterActionType => {
   return { type: 'START_TIMER' };
 };
 
-const stopTimer = (): { type: CounterType } => {
+const stopTimer = (): CounterActionType => {
   return { type: 'STOP_TIMER' };
 };
 
-const changeTerm = (term: TermType): { type: CounterType } => {
+const changeTerm = (term: TermType): CounterActionType => {
   return { type: 'CHANGE_TERM', term };
 };
 
@@ -28,7 +34,7 @@ export const CounterActions = {
   changeTerm
 };
 
-const countDown = (): { type: CounterType } => {
+const countDown = (): CounterActionType => {
   return { type: 'COUNT_DOWN' };
 };
 

@@ -13,13 +13,11 @@ type State = {
  counter: Counter
 };
 
-type Props = {
-  actions: typeof CounterActions,
-  counter: Counter
-}
-
 class App extends Component {
-  props: Props;
+  props: {
+    actions: typeof CounterActions,
+    counter: Counter
+  };
 
   render(): React.Element {
     const { actions, counter } = this.props;
