@@ -15,8 +15,13 @@ type State = {
   isStart: boolean
 };
 export default class Counter extends Component {
-  props: Props;
-  state: State;
+  props: {
+    count: number,
+    term: string,
+    onStartTimer: typeof CounterActions.startTimer,
+    onStopTimer: typeof CounterActions.stopTimer
+  };
+  state: { isStart: boolean };
 
   constructor(_props: Props) {
     super();

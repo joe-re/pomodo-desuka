@@ -1,9 +1,10 @@
+// @flow
 import { Component } from 'react';
 
-const style = require('!style!css!sass!./timer_text.scss')['timer-text'];
+import style from '!style!css!sass!./timer_text.scss';
 
 export default class TimerText extends Component {
-  get readableTime() {
+  get readableTime(): string {
     const { seconds } = this.props;
     const pad = (val) => `0${Math.floor(val)}`.slice(-2);
     return `${pad(seconds / 60)} : ${pad(seconds % 60)}`;
@@ -24,7 +25,7 @@ export default class TimerText extends Component {
     }
 
     return(
-      <div className={`timer-text ${style} ${textClassName}`}>
+      <div className={`timer-text ${style['timer-text']} ${textClassName}`}>
         {this.readableTime}
       </div>
     );

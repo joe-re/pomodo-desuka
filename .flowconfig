@@ -13,6 +13,7 @@ interface/.*
 module.file_ext=.react.js
 module.file_ext=.js
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/interface/CSSModules.js'
+unsafe.enable_getters_and_setters=true
 
 [version]
 0.26.0
